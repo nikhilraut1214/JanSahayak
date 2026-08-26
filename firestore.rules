@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Feedback collection: Anonymous visitors can create feedback, but cannot read, update, or delete
+    match /feedback/{feedbackId} {
+      allow create: if request.resource.data.keys().hasAll(['rating', 'message'])
+                   && request.resource.data.rating is number
+                   && request.resource.data.rating >= 1 
+                   && request.resource.data.rating <= 5
+                   && request.resource.data.message is string
+                   && request.resource.data.message.size() <= 2000;
+      allow read, delete: if request.auth != null;
+      allow update: if false;
+    }
+
+    // Analytics Events: Anonymous visitors can create events
+    match /analytics_events/{eventId} {
+      allow create: if request.resource.data.keys().hasAll(['eventName'])
+                   && request.resource.data.eventName is string;
+      allow read, delete: if request.auth != null;
+      allow update: if false;
+    }
+
+    // Search Logs: Anonymous search query logging
+    match /search_logs/{logId} {
+      allow create: if request.resource.data.keys().hasAll(['query'])
+                   && request.resource.data.query is string;
+      allow read, delete: if request.auth != null;
+      allow update: if false;
+    }
+  }
+}

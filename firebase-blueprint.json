@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "feedback": {
+      "title": "Feedback",
+      "description": "Anonymous feedback submitted by citizens",
+      "type": "object",
+      "properties": {
+        "rating": { "type": "number" },
+        "message": { "type": "string" },
+        "category": { "type": "string" },
+        "state": { "type": "string" },
+        "page": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "email": { "type": "string" }
+      },
+      "required": ["rating", "message"]
+    },
+    "analytics_events": {
+      "title": "Analytics Events",
+      "description": "Anonymous usage analytics events",
+      "type": "object",
+      "properties": {
+        "eventName": { "type": "string" },
+        "details": { "type": "string" },
+        "page": { "type": "string" },
+        "query": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["eventName"]
+    },
+    "search_logs": {
+      "title": "Search Logs",
+      "description": "Audit logs of search queries",
+      "type": "object",
+      "properties": {
+        "query": { "type": "string" },
+        "resultsCount": { "type": "number" },
+        "categoryFilter": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["query"]
+    }
+  }
+}

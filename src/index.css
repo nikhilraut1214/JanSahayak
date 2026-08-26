@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  .animate-scale-up {
+    animation: scaleUp 0.25s ease-out forwards;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.7);
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 1.2cm;
+    size: auto;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Hide site background components, headers, footers, navigation, buttons */
+  header, footer, nav, button, input, select, .print\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure modal backdrop doesn't obscure content */
+  .fixed.inset-0 {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  /* Make modal dialog fill printable area cleanly */
+  .max-w-4xl {
+    max-width: 100% !important;
+  }
+
+  .shadow-2xl, .shadow-md, .shadow-xl, .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  .rounded-3xl, .rounded-2xl {
+    border-radius: 6px !important;
+  }
+
+  .overflow-y-auto, .max-h-\[90vh\] {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .border {
+    border-color: #cbd5e1 !important;
+  }
+}
+
+/* High Contrast Mode Global Overrides */
+html.high-contrast {
+  color-scheme: dark;
+}
+
+html.high-contrast body {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+
+html.high-contrast .border,
+html.high-contrast .border-t,
+html.high-contrast .border-b,
+html.high-contrast .border-l,
+html.high-contrast .border-r {
+  border-color: #facc15 !important;
+}
+
+html.high-contrast p,
+html.high-contrast span,
+html.high-contrast h1,
+html.high-contrast h2,
+html.high-contrast h3,
+html.high-contrast h4,
+html.high-contrast h5,
+html.high-contrast h6,
+html.high-contrast li,
+html.high-contrast label,
+html.high-contrast th,
+html.high-contrast td {
+  color: #ffffff !important;
+}
+
+html.high-contrast .text-slate-400,
+html.high-contrast .text-slate-500,
+html.high-contrast .text-slate-600,
+html.high-contrast .text-slate-700,
+html.high-contrast .text-gray-400,
+html.high-contrast .text-gray-500 {
+  color: #fef08a !important;
+}
+
+html.high-contrast .bg-white,
+html.high-contrast .bg-slate-50,
+html.high-contrast .bg-slate-100,
+html.high-contrast .bg-slate-800,
+html.high-contrast .bg-slate-900,
+html.high-contrast .bg-slate-950 {
+  background-color: #000000 !important;
+}
+
+html.high-contrast input,
+html.high-contrast select,
+html.high-contrast textarea {
+  background-color: #000000 !important;
+  color: #fef08a !important;
+  border-color: #facc15 !important;
+}
+
